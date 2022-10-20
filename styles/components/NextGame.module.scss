@@ -1,0 +1,52 @@
+@use "../abstracts" as a;
+
+.container {
+  height: 70vh;
+  width: min(90%, 968px);
+  background: black;
+  margin: 0 auto;
+  background-image: url("../../public/new_banner_bg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 3rem 3rem 0 3rem;
+}
+
+.left {
+}
+
+.details {
+  width: fit-content;
+
+  &__bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.title {
+  @include a.font(a.$ft-display, 400, a.$cl-grey-100, 7rem, 1);
+  text-transform: uppercase;
+  //   text-shadow: 0 1px 0 rgba(14, 13, 13, 0.4);
+}
+
+.vs {
+  background-color: red;
+  width: fit-content;
+  padding: 0.5rem;
+  @include a.font(a.$ft-display, 400, a.$cl-grey-100, 2rem, 1);
+}
+
+.times {
+  padding: 1rem 0;
+  @include a.font(a.$ft-heading, 700, a.$cl-grey-100, 1.1rem, 1);
+  text-transform: uppercase;
+}
+
+.right {
+  position: relative;
+}

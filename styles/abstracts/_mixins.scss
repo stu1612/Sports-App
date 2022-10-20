@@ -1,0 +1,91 @@
+@use "./vars" as v;
+
+@mixin flex($dir, $jst, $aln) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $jst;
+  align-items: $aln;
+}
+
+@mixin btn($arg1, $arg2, $arg3) {
+  display: inline-block;
+  text-align: center;
+  padding: v.$space-xs v.$space-sm;
+  border-radius: 6px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: $arg1;
+  border: 1px solid $arg2;
+  color: $arg3;
+  font-family: v.$button;
+  font-size: 1.6rem;
+}
+
+@mixin font($arg1, $arg2, $arg3, $arg4, $arg5) {
+  font-family: $arg1;
+  font-weight: $arg2;
+  color: $arg3;
+  font-size: $arg4;
+  line-height: $arg5;
+}
+
+@mixin grid-layout($args...) {
+  display: grid;
+  grid-template-areas: $args;
+  grid-gap: 3rem;
+  width: 90%;
+  margin: 5rem auto;
+}
+
+@mixin card($arg1, $arg2) {
+  position: $arg1;
+  overflow: hidden;
+  height: v.$card-height;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+@mixin background-image($hor, $vrt, $sz) {
+  background-position: $hor $vrt;
+  background-size: $sz;
+  background-repeat: no-repeat;
+}
+
+@mixin position-absolute($top, $rgt, $btm, $lft) {
+  position: absolute;
+  top: $top;
+  right: $rgt;
+  bottom: $btm;
+  left: $lft;
+}
+
+@mixin drop-shadow() {
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+@mixin calc-height($arg1, $arg2) {
+  height: calc($arg1 / $arg2);
+}
+
+@mixin text-shadow() {
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.63);
+}
+
+// media queries
+
+@mixin mQ($arg...) {
+  @if length($arg) == 1 {
+    @media screen and (min-width: nth($arg, 1)) {
+      @content;
+    }
+  }
+  @if length($arg) == 2 {
+    @media screen and (max-width: nth($arg, 1)) and (max-height: nth($arg, 2)) {
+      @content;
+    }
+  }
+}
