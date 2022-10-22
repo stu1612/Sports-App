@@ -1,0 +1,156 @@
+@use "../abstracts" as a;
+
+.container {
+  width: min(95%, 1400px);
+  margin: 10vh auto;
+
+  &__top {
+    display: grid;
+    grid-template-areas: "one" "two";
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  &__bottom {
+    display: grid;
+    grid-template-areas: "one" "two" "three" "four";
+    gap: 3rem;
+  }
+}
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.5 linear;
+  cursor: pointer;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  }
+
+  &:hover .image {
+    transform: scale(1.2, 1.2);
+  }
+
+  &:hover .stroke {
+    animation: stroke 0.5s linear;
+  }
+
+  &__primary {
+    display: grid;
+    height: 500px;
+    grid-template-areas: "a" "b";
+  }
+
+  &__secondary {
+    display: grid;
+    height: 500px;
+    grid-template-areas: "a" "b";
+  }
+}
+
+.cardImage {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
+
+.cardContent {
+  padding: 2rem;
+  @include a.flex(column, space-between, flex-start);
+  height: 300px;
+}
+
+.stroke {
+  height: 3px;
+  border-radius: 25px;
+  width: 50px;
+  background: a.$cl-primary-300;
+}
+
+.heading {
+  @include a.font(a.$ft-heading, 700, a.$cl-grey-900, 2.8rem, 1.2);
+  text-transform: uppercase;
+  padding: 1rem 0;
+}
+.text {
+  @include a.font(a.$ft-text, 400, a.$cl-grey-900, 1.8rem, 1.2);
+}
+
+.light {
+  @include a.font(a.$ft-text, 400, a.$cl-grey-300, 1.2rem, 1);
+  padding-left: 5px;
+}
+
+.image {
+  transition: all 0.5s linear;
+}
+
+.author {
+  @include a.flex(row, center, center);
+}
+
+@keyframes stroke {
+  0% {
+    width: 50px;
+  }
+  40% {
+    width: 10px;
+  }
+  100% {
+    width: 50px;
+  }
+}
+
+@include a.mQ(600px) {
+  .container {
+    &__top {
+      grid-template-areas: "one two";
+    }
+    &__bottom {
+      grid-template-areas: "one two" "three four";
+    }
+  }
+}
+
+@include a.mQ(968px) {
+  .card {
+    &__primary {
+      grid-template-areas: "a b";
+      grid-template-columns: 1fr 1fr;
+      height: 350px;
+
+      .cardImage {
+        height: 100%;
+      }
+
+      .cardContent {
+        height: auto;
+      }
+    }
+  }
+
+  .primary__container {
+    grid-template-areas: "a b";
+    grid-template-columns: 1fr 1fr;
+    height: 350px;
+  }
+
+  .container__image {
+    height: 100%;
+  }
+
+  .container__content {
+    height: auto;
+  }
+}
+
+@include a.mQ(1100px) {
+  .container {
+    &__bottom {
+      grid-template-areas: "one two three four";
+    }
+  }
+}

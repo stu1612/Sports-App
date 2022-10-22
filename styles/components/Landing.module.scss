@@ -4,68 +4,46 @@
   height: 100vh;
   width: 100%;
   position: relative;
-}
 
-.image__wrapper {
-  position: relative;
-  height: 90%;
-  width: 100%;
-  // filter: brightness(0.6);
-  &:after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(10deg, black, transparent);
+  &__image {
+    position: relative;
+    height: 90%;
+    width: 100%;
+    &:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(10deg, black, transparent);
+    }
   }
-}
 
-.container__left {
-  display: none;
-  clip-path: polygon(0% 0%, 75% 0%, 100% 64%, 88% 100%, 0% 100%);
-  background-color: rgb(46, 45, 45);
-  opacity: 0.6;
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+  &__left {
+    display: none;
+    clip-path: polygon(0% 0%, 75% 0%, 100% 64%, 88% 100%, 0% 100%);
+    background-color: rgb(46, 45, 45);
+    opacity: 0.6;
+    width: 50%;
+    height: 100%;
+    @include a.position-absolute(0, null, null, 0);
+  }
 
-.container__right {
-  opacity: 0.6;
-  width: 70%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.heading {
-  position: absolute;
-  transform: translate(-10%, -50%);
-  left: 10%;
-  padding: 1rem 2rem;
-  bottom: 0;
-
-  // position: absolute;
-  // top: 80%;
-  // left: 10%;
-  // transform: translate(-10%, -80%);
+  &__content {
+    @include a.position-absolute(null, null, 0, 10%);
+    transform: translate(-10%, -50%);
+    padding: a.$space-xs a.$space-md;
+  }
 }
 
 .title {
   @include a.font(a.$ft-heading, 700, a.$cl-grey-100, 4rem, 1.2);
   letter-spacing: 1.5px;
   text-transform: uppercase;
-
   text-shadow: 0 1px 0 rgba(14, 13, 13, 0.4);
   z-index: 20;
 }
 
-.wrapper {
-  position: absolute;
-  bottom: 0;
-  right: 5%;
+.bannerImage {
+  @include a.position-absolute(null, 5%, 0, null);
   display: none;
 }
 
@@ -73,8 +51,8 @@
   filter: drop-shadow(2px 4px 6px black);
 }
 
-@include a.mQ(768px) {
-  .heading {
+@include a.mQ(600px) {
+  .container__content {
     bottom: 10%;
   }
 }
@@ -83,7 +61,7 @@
   .container__left {
     display: block;
   }
-  .wrapper {
+  .bannerImage {
     display: block;
   }
 }

@@ -55,12 +55,12 @@
   background-repeat: no-repeat;
 }
 
-@mixin position-absolute($top, $rgt, $btm, $lft) {
+@mixin position-absolute($arg1, $arg2, $arg3, $arg4) {
   position: absolute;
-  top: $top;
-  right: $rgt;
-  bottom: $btm;
-  left: $lft;
+  top: $arg1;
+  right: $arg2;
+  bottom: $arg3;
+  left: $arg4;
 }
 
 @mixin drop-shadow() {

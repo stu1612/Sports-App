@@ -2,17 +2,18 @@
 import Image from "next/image";
 
 // files
-import styles from "../styles/components/Landing.module.scss";
 import ImageLoader from "../utils/ImageLoader";
 import img from "../public/landing_player.png";
 import Playbutton from "./Playbutton";
+import styles from "../styles/components/Landing.module.scss";
 
 export default function Landing({ data }) {
   // properties
   const { title, featuredImage } = data;
+
   return (
     <div className={styles.container}>
-      <div className={styles.image__wrapper}>
+      <div className={styles.container__image}>
         <Image
           src={featuredImage.url}
           alt={title}
@@ -20,15 +21,15 @@ export default function Landing({ data }) {
           objectFit="cover"
           layout="fill"
         />
-        <div className={styles.container__left}></div>
+        <div className={styles.container__left} />
       </div>
-      <div className={styles.heading}>
+      <div className={styles.container__content}>
         <Playbutton />
         <span>
           <h1 className={styles.title}>{title}</h1>
         </span>
       </div>
-      <div className={styles.wrapper}>
+      <div className={styles.bannerImage}>
         <Image
           src={img}
           alt="basketball player"
