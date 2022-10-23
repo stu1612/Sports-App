@@ -45,6 +45,8 @@
 .bannerImage {
   @include a.position-absolute(null, 5%, 0, null);
   display: none;
+  height: 80vh;
+  width: 50vw;
 }
 
 .image {

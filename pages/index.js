@@ -2,22 +2,33 @@
 import { gql, GraphQLClient } from "graphql-request";
 
 // files
-import { LandingBanner, Posts, NextGame } from "../components";
+import {
+  LandingBanner,
+  Posts,
+  NextGame,
+  Parralax,
+  Training,
+} from "../components";
 
 export default function Home({
   banner,
   upcoming,
   primaryPosts,
   secondaryPosts,
+  parralax,
+  training,
 }) {
   const data = banner && banner[0];
   const upcomingData = upcoming && upcoming[0];
+  const parralaxData = parralax && parralax[0];
 
   return (
     <>
       <LandingBanner data={data} />
       <NextGame upcomingData={upcomingData} />
       <Posts primaryPosts={primaryPosts} secondaryPosts={secondaryPosts} />
+      <Parralax parralaxData={parralaxData} />
+      <Training training={training} />
     </>
   );
 }
@@ -97,10 +108,40 @@ export const getServerSideProps = async () => {
     }
   `;
 
+  const parralaxQuery = gql`
+    query parralax {
+      parralaxes {
+        featuredImage {
+          url
+        }
+        thinText
+        thickText
+      }
+    }
+  `;
+
+  const trainingQuery = gql`
+    query training {
+      trainings {
+        coverImage {
+          url
+        }
+        title
+        slug
+        content {
+          html
+          text
+        }
+      }
+    }
+  `;
+
   const data = await client.request(bannerQuery);
   const upcomingData = await client.request(upcomingQuery);
   const primaryData = await client.request(primaryPostsQuery);
   const secondaryData = await client.request(secondaryPostsQuery);
+  const parralaxData = await client.request(parralaxQuery);
+  const trainingData = await client.request(trainingQuery);
 
   return {
     props: {
@@ -108,6 +149,8 @@ export const getServerSideProps = async () => {
       upcoming: upcomingData.nextFixtures,
       primaryPosts: primaryData.primaryPosts,
       secondaryPosts: secondaryData.secondaryPosts,
+      parralax: parralaxData.parralaxes,
+      training: trainingData.trainings,
     },
   };
 };

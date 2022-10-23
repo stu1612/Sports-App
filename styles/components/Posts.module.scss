@@ -16,6 +16,13 @@
     grid-template-areas: "one" "two" "three" "four";
     gap: 3rem;
   }
+
+  // training component
+  &__teams {
+    display: grid;
+    grid-template-areas: "one" "two" "three";
+    gap: 3rem;
+  }
 }
 
 .card {
@@ -49,6 +56,48 @@
     height: 500px;
     grid-template-areas: "a" "b";
   }
+
+  &__tertiary {
+    height: 400px;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    transition: 0.4s ease-out;
+    background: transparent;
+
+    &:hover {
+      transform: scale(1.08, 1.08);
+    }
+  }
+}
+
+.tertiary__title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  padding: 1rem;
+  border: 1px solid white;
+  color: white;
+  opacity: 0;
+}
+
+.tertiary__image {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.corner {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  background-color: a.$cl-primary-300;
+  border-radius: 0 4px 0 32px;
 }
 
 .cardImage {
@@ -116,6 +165,12 @@
 }
 
 @include a.mQ(968px) {
+  .container {
+    &__teams {
+      grid-template-areas: "one two three";
+    }
+  }
+
   .card {
     &__primary {
       grid-template-areas: "a b";

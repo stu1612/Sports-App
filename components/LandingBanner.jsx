@@ -34,8 +34,7 @@ export default function Landing({ data }) {
           src={img}
           alt="basketball player"
           objectFit="contain"
-          height={500}
-          width={500}
+          layout="fill"
           className={styles.image}
         />
       </div>
